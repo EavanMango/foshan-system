@@ -1,0 +1,106 @@
+@charset "utf-8";
+@import "./themes.scss";
+
+//遍历主题map
+@mixin themeify {
+
+  @each $theme-name,
+  $theme-map in $themes {
+    //！global 把局部变量强升为全局变量
+    $theme-map: $theme-map !global;
+    $theme-name: $theme-name !global;
+
+    //判断HTML的data-theme的属性值 #{}是sass的插值表达式
+    //& sass嵌套里的父容器标识 @content是混合器插槽，像vue的slot
+    [theme-name="#{$theme-name}"] & {
+      @content;
+    }
+  }
+}
+
+
+//声明一个根据key获取颜色的function
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+
+//获取background-color背景颜色
+@mixin background_color($color) {
+  @include themeify {
+    background-color: themed($color) !important;
+  }
+}
+
+@mixin font_color($color) {
+  @include themeify {
+    color: themed($color);
+  }
+}
+
+@mixin font_color_im($color) {
+  @include themeify {
+    color: themed($color) !important;
+  }
+}
+
+@mixin border_color($color) {
+  @include themeify {
+    border-color: themed($color) !important;
+  }
+}
+
+@mixin box_shadow($color) {
+  @include themeify {
+    box-shadow: 0 10px 12px themed($color) !important;
+  }
+}
+
+
+@mixin background_color_no($color) {
+  @include themeify {
+    background-color: themed($color);
+  }
+}
+
+@mixin font_color_no($color) {
+  @include themeify {
+    color: themed($color);
+  }
+}
+
+@mixin border_color_no($color) {
+  @include themeify {
+    border-color: themed($color);
+  }
+}
+
+@mixin border_top($color) {
+  @include themeify {
+    border-top: 1px solid themed($color) !important;
+  }
+}
+
+@mixin border_bottom($color) {
+  @include themeify {
+    border-bottom: 1px solid themed($color) !important;
+  }
+}
+
+@mixin border_left($color) {
+  @include themeify {
+    border-left: 1px solid themed($color) !important;
+  }
+}
+
+@mixin border_right($color) {
+  @include themeify {
+    border-right: 1px solid themed($color) !important;
+  }
+}
+
+@mixin box_shadow_no($color) {
+  @include themeify {
+    box-shadow: 0 10px 12px themed($color);
+  }
+}

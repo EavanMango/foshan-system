@@ -1,0 +1,175 @@
+$themes: (
+        /** 亮色风格 */
+        theme-light: (primaryColor: #ffffff, //主色
+                emphasizeColor: #ffffff, //强调色
+                primary_titleColor: #000000, // 主标题色
+                right_container: #f7f7f7, //右侧头部
+                right_header_font: #97a8be, //右侧头部文字颜色
+                middle_tip: #ffffff,
+                layout_menu_bg: #00796A, //侧边栏背景
+                layout_menu_title_active_fc: #ffffff, //父级菜单选中文字颜色
+                layout_menu_title_active_bg: #0E5C55, //父级菜单选中背景色
+                layout_menu_submenu_title_bg: #00796A, //子菜单标题背景
+                layout_menu_submenu_item_bg: #1A716A, //子菜单背景色
+                menu_font: #CAF7F3,
+                brightColor: #fff,
+                tabRadioColor: #00796A,
+                tabRadioColor_bg: #ffffff,
+                scrollbar: #999999,
+                border: #e2e2e2,
+                searchBtn: #00796A,
+                warningBtn: #E6A23C,
+                layout_border: rgba(197, 199, 199, .5),
+                tree_bg: #f0f5ff,
+                tree_bg_hover: #E9E9E9,
+                tree_font: #00796A,
+                echarts_font: #1E90FF,
+                layout_bg: #ffffff,
+                table_bg: #ffffff,
+                table_hover: #E9E9E9,
+                general_fc: #333333,
+                general_card_bg: #ffffff,
+                general_card_bottom_bg: #7d848c,
+                runState_name_fc: #333333,
+                runState_value_fc: #000000,
+                runState_card_border: #e2e2e2,
+                runState_card_bg: #5d676f,
+                runState_card_bottom_bg: #7d848c,
+                runState_card_back: #ffa73c,
+                eventRecord_card_border: #e2e2e2,
+                eventRecord_card_bootom_bg: #ffffff,
+                eventRecord_card_bootom_fc: #000000,
+                patrolRecord_card_fc: #000000,
+                electricity_card_btn_bg: rgba(255, 255, 255, .8),
+                electricity_card_top_bg: rgba(88, 47, 217, .1),
+                electricity_card_top_fc: #000000,
+                electricity_card_bottom_bg: #7d848c,
+                shadowColor: #D2D2D2,
+                confirm_0: #B3B3B3,
+                confirm_1: #2BB1A0,
+                confirm_hover: rgba(50, 84, 162, .27),
+        ),
+        /** 蓝色 */
+        theme-blue: (primaryColor: #2561EF, //主色
+                emphasizeColor: #ffffff, //强调色
+                primary_titleColor: #fff, // 主标题色
+                right_container: #F2F3F5, // 右侧头部
+                navbar_bg_color:#2561EF,
+                right_header_font: #97a8be, //右侧头部文字颜色
+                middle_tip: #ffffff,
+                sidebar_logo_container:#2561EF,
+                layout_menu_bg: #e7e7eb, //侧边栏背景
+                layout_menu_title_active_fc: #ffffff, //父级菜单选中文字颜色
+                layout_menu_title_active_bg: #2561EF, //菜单选中背景色
+                layout_menu_submenu_title_bg: #2561EF, //子菜单标题背景
+                layout_menu_submenu_item_bg: #fff, //子菜单背景色
+                fontColor:#000,
+                menu_font: #000,
+                brightColor: #000,
+                hoverColor:#fff,
+                tabRadioColor: #2561EF,
+                tabRadioColorFont: #2561EF,
+                tabRadioColor_bg: #ffffff,
+                scrollbar: #999999,
+                border: #e2e2e2,
+                searchBtn: #1857BE,
+                warningBtn: #E6A23C,
+                layout_border: rgba(197, 199, 199, .5),
+                tree_bg: #f0f5ff,
+                tree_bg_hover: #E9E9E9,
+                tree_font: #000,
+                echarts_font: #1E90FF,
+                layout_bg: #ffffff,
+                table_bg: #ffffff,
+                table_banma_bg:#F9F9F9,
+                table_choose_bg:#ECF1FF,
+                table_hover: #E9E9E9,
+                general_fc: #333333,
+                general_card_bg: #ffffff,
+                general_card_bottom_bg: #7d848c,
+                runState_name_fc: #333333,
+                runState_value_fc: #000000,
+                runState_card_border: #e2e2e2,
+                runState_card_bg: #5d676f,
+                runState_card_bottom_bg: #7d848c,
+                runState_card_back: #ffa73c,
+                eventRecord_card_border: #e2e2e2,
+                eventRecord_card_bootom_bg: #ffffff,
+                eventRecord_card_bootom_fc: #000000,
+                patrolRecord_card_fc: #000000,
+                electricity_card_btn_bg: rgba(255, 255, 255, .8),
+                electricity_card_top_bg: rgba(88, 47, 217, .1),
+                electricity_card_top_fc: #000000,
+                electricity_card_bottom_bg: #7d848c,
+                shadowColor: #D2D2D2,
+                confirm_0: #E1E1E1,
+                confirm_1: #A6C8FF,
+                confirm_hover: rgba(166, 200, 255, .27),
+                inforColor:#F3F5FE,
+                disableColor:#999,
+                loading_bg:rgba(255, 255, 255, .8),
+                fourColor:#F4F6FF,
+                carouselColor:#F2F3F5),
+
+        /** 深暗色 */
+        theme-boldDark: (primaryColor: #666EE8, //主色
+                primary_titleColor: #ffffff, //主标题色
+                emphasizeColor: #03173c, //强调色
+                right_container: #0A0B27, //右侧头部
+                navbar_bg_color:#20243C,
+                right_header_font: #ffffff, //右侧头部文字颜色
+                middle_tip: #091133,
+                sidebar_logo_container:#20243C,
+                layout_menu_bg: #20243C, //侧边栏背景
+                layout_menu_title_active_fc: #ffffff, //父级菜单选中文字颜色
+                layout_menu_title_active_bg: #666EE8, //菜单选中背景色
+                layout_menu_submenu_title_bg: #666EE8, //子菜单标题背景
+                layout_menu_submenu_item_bg: #22233C, //子菜单背景色
+                fontColor:#fff,
+                menu_font: #ffffff,
+                brightColor: #fff,
+                hoverColor:#fff,
+                tabRadioColor: #666EE8,
+                tabRadioColorFont: #8E92D5,
+                tabRadioColor_bg: #122547,
+                scrollbar: #003d74,
+                border: #4267c4,
+                searchBtn: #003d74,
+                warningBtn: #E6A23C,
+                layout_border: rgba(20, 62, 144, .2),
+                tree_bg: #1857be,
+                tree_bg_hover: #1857be,
+                tree_font: #ffffff,
+                echarts_font: #ffffff,
+                layout_bg: #181c3a,
+                table_bg: #22233C,
+                table_banma_bg:#1D1D35,
+                table_choose_bg:#2F315A,
+                table_hover: #182f67,
+                general_fc: #dad90d,
+                general_card_bg: #29406e,
+                general_card_bottom_bg: #003d74,
+                runState_name_fc: #dad90d,
+                runState_value_fc: #ffffff,
+                runState_card_border: transparent,
+                runState_card_bg: #29406e,
+                runState_card_bottom_bg: #003d74,
+                runState_card_back: #003d74,
+                eventRecord_card_border: transparent,
+                eventRecord_card_bootom_bg: #29406e,
+                eventRecord_card_bootom_fc: #ffffff,
+                patrolRecord_card_fc: #ffffff,
+                electricity_card_btn_bg: #29406e,
+                electricity_card_top_bg: rgba(180, 163, 233, .1),
+                electricity_card_top_fc: #ffffff,
+                electricity_card_bottom_bg: #003d74,
+                shadowColor: #0d2e6c,
+                confirm_0: #A1A6B1,
+                confirm_1: #3254A2,
+                confirm_hover: rgba(202, 247, 247, .44),
+                inforColor:#11143C,
+                disableColor:#999,
+                loading_bg:rgba(11, 9, 35, .5),
+                fourColor:rgba(0, 0, 0, .1),
+                carouselColor:#141530),
+);

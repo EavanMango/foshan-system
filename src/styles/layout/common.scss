@@ -1,0 +1,97 @@
+@import "../css-theme/handle";
+
+#electric-container {
+  width: 100%;
+  height: calc(100vh - 100px);
+
+  .search-layout {
+    position: relative;
+    height: 100%;
+    width: 20rem;
+    border: 1px solid ;
+    @include border_color('layout_border');
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 10px;
+    //box-shadow: 0 0 5px;
+    //@include box_shadow('layout_shadow');
+    @include background_color('emphasizeColor');
+
+    .title-label {
+      @include font_color('primary_titleColor')
+
+    }
+
+    .tree-box {
+      margin: 0 auto;
+      ::v-deep .el-tree-node__expand-icon {
+        font-size: 16px;
+      }
+      font-size: 15px;
+
+      .info-box {
+        margin-top: 18px;
+        text-align: center;
+      }
+    }
+  }
+
+  .content-layout {
+    width: calc(100% - 21rem);
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: 1px solid;
+    @include border_color('layout_border');
+    @include background_color('emphasizeColor');
+
+    .right-content__content {
+      width: 100%;
+      height: 100%;
+
+      .right-content__card-title {
+        height: 4rem;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 20px;
+        border-bottom: 1px solid;
+        @include border_color('tabRadioColor')
+      }
+
+      .right-content__card-info {
+        box-sizing: border-box;
+        border-top: 1px solid;
+        @include border_color('emphasizeColor');
+        height: calc(100% - 4rem);
+        width: 100%;
+        padding: 0 0 0 22px;
+        position: relative;
+
+        .formList {
+          width: 98%;
+          box-sizing: border-box;
+          height: calc(100% - 20px);
+          overflow-x: hidden;
+          overflow-y: auto;
+
+          .middle {
+            .leftBtn {
+
+            }
+
+            .rightTip {
+              color: #409EFF;
+              cursor: pointer;
+            }
+          }
+
+          .table-content {
+            width: 100%;
+            height: calc(100vh - 280px);
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}

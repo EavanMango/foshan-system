@@ -1,0 +1,87 @@
+// global transition css
+
+/* fade */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.28s;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .5s;
+}
+
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* breadcrumb transition */
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all .5s;
+}
+
+.breadcrumb-enter,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.breadcrumb-move {
+  transition: all .5s;
+}
+
+.breadcrumb-leave-active {
+  position: absolute;
+}
+
+.transTop-enter,
+.transTop-leave-to {
+  // transform: translateX(-55vw);
+  transform: translateX(-20vw) translateY(60vh) scale(0);
+  // transform: skew(20px);
+}
+
+.transTop-enter-active,
+.transTop-leave-active {
+  transition: .3s;
+  transition-timing-function: ease-in-out;
+}
+
+.transTop-enter-to,
+.transTop-leave {
+  // transform: translateX(0vw);
+  transform: translateX(0) translateY(0) scale(1);
+
+
+}
+
+// =============================
+.transLeftTime-enter,
+.transLeftTime-leave-to {
+  transform: translateX(-420px);
+  opacity: 0;
+}
+
+.transLeftTime-enter-to,
+.transLeftTime-leave-from {
+  transform: translateX(0px);
+  opacity: 1;
+}
+
+.transLeftTime-enter-active,
+.transLeftTime-leave-active {
+  transition: .5s;
+}

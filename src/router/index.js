@@ -63,7 +63,7 @@ export const asyncRoutes = [
         component: () => import('@/views/file-management/enterprise-file'),
         meta: {
           title: '企业档案',
-          icon: ' ',
+          icon: '企业档案',
         },
       },
       {
@@ -73,7 +73,7 @@ export const asyncRoutes = [
         component: () => import('@/views/file-management/equipment-file'),
         meta: {
           title: '设备档案',
-          icon: ' ',
+          icon: '设备档案',
         },
       },
 
@@ -99,7 +99,7 @@ export const asyncRoutes = [
         component: () => import('@/views/load-monitor/city-monitor'),
         meta: {
           title: '地市监测',
-          icon: ' ',
+          icon: '地市监测',
         },
       },
       {
@@ -109,7 +109,7 @@ export const asyncRoutes = [
         component: () => import('@/views/load-monitor/industry-monitor'),
         meta: {
           title: '行业监测',
-          icon: ' ',
+          icon: '行业监测',
         },
       },
 
@@ -120,7 +120,7 @@ export const asyncRoutes = [
         component: () => import('@/views/load-monitor/history-monitor'),
         meta: {
           title: '用户监测',
-          icon: ' ',
+          icon: '用户监测',
         },
       },
 
@@ -156,7 +156,7 @@ export const asyncRoutes = [
         component: () => import('@/views/remote-control/single-control'),
         meta: {
           title: '空调控制',
-          icon: ' ',
+          icon: '空调控制',
         },
       },
       {
@@ -194,7 +194,7 @@ export const asyncRoutes = [
         component: () => import('@/views/remote-control/group-control'),
         meta: {
           title: '群组管理',
-          icon: ' ',
+          icon: '群组管理',
         },
       },
       {
@@ -204,7 +204,7 @@ export const asyncRoutes = [
         component: () => import('@/views/remote-control/group-issued'),
         meta: {
           title: '群控下发',
-          icon: ' ',
+          icon: '群控下发',
         },
       },
       {
@@ -214,7 +214,7 @@ export const asyncRoutes = [
         component: () => import('@/views/remote-control/group-event'),
         meta: {
           title: '群控事件',
-          icon: ' ',
+          icon: '群控事件',
         },
       },
       {

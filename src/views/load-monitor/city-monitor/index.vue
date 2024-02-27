@@ -3,7 +3,7 @@
  * @Author       : 陈凯
  * @Date         : 2023-08-17 14:59:53
  * @LastEditors  : 陈凯
- * @LastEditTime : 2024-02-26 15:32:27
+ * @LastEditTime : 2024-02-26 15:48:26
  * @FilePath     : \foushan-system\src\views\load-monitor\city-monitor\index.vue
 -->
 
@@ -299,7 +299,7 @@ export default {
   height: 7%;
   min-height: 45px;
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: hidden;
   @include background_color('layout_menu_submenu_item_bg');
 }
 .cardBox {

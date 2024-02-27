@@ -13,7 +13,10 @@
       >
         <el-menu-item
           :index="resolvePath(onlyOneChild.path)"
-          :class="{ 'submenu-title-noDropdown': !isNest }"
+          :class="{
+            'submenu-title-noDropdown': !isNest,
+            'index-submenu-title': item.name == 'index',
+          }"
         >
           <item
             :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"

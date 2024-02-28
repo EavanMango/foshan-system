@@ -3,7 +3,7 @@
  * @Author       : 陈凯
  * @Date         : 2023-11-06 10:26:08
  * @LastEditors  : 陈凯
- * @LastEditTime : 2024-02-28 16:26:18
+ * @LastEditTime : 2024-02-28 16:28:30
  * @FilePath     : \foushan-system\src\views\remote-control\group-event\detail.vue
 -->
 <template>
@@ -354,14 +354,14 @@ export default {
           data: [
             {
               id: 82,
-              name: '昆山空调演习20230715',
+              name: '顺德空调演习20230715',
               code: 'KUNSHAN_0715',
               loadValue: '265.29',
               startTime: '2023-07-15 10:00:00',
               endTime: '2023-07-15 11:00:00',
               takePartType: '邀约',
               commandType: '削峰',
-              groupName: '昆山空调演习20230715',
+              groupName: '顺德空调演习20230715',
               consNum: 4,
               underLoad: 265.29,
               respondLoad: 358.87,
@@ -397,37 +397,37 @@ export default {
           total: 4,
           data: [
             {
-              eventName: '昆山空调演习20230715',
+              eventName: '顺德空调演习20230715',
               eventId: '82',
               consId: '100000001244',
               consNo: '3206623223505',
-              consName: '昆山高新科技服务有限公司',
+              consName: '顺德高新科技服务有限公司',
               city: '苏州',
               downLoad: 81.0,
               consState: '已完成',
             },
             {
-              eventName: '昆山空调演习20230715',
+              eventName: '顺德空调演习20230715',
               eventId: '82',
               consId: '100000001246',
               consNo: '3203005925233',
-              consName: '昆山英汇物业服务有限公司',
+              consName: '顺德英汇物业服务有限公司',
               city: '苏州',
               downLoad: 61.0,
               consState: '已完成',
             },
             {
-              eventName: '昆山空调演习20230715',
+              eventName: '顺德空调演习20230715',
               eventId: '82',
               consId: '100000001248',
               consNo: '3206618489456',
-              consName: '昆山市柏雅酒店管理有限公司',
+              consName: '顺德市柏雅酒店管理有限公司',
               city: '苏州',
               downLoad: 116.06,
               consState: '已完成',
             },
             {
-              eventName: '昆山空调演习20230715',
+              eventName: '顺德空调演习20230715',
               eventId: '82',
               consId: '100000001256',
               consNo: '3206883015591',

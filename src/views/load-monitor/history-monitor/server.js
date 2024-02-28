@@ -10,7 +10,7 @@ export const tableColumns = [
     sortable: 'custom',
   },
   {
-    label: '地市',
+    label: '地区',
     prop: 'city',
     sortable: 'custom',
   },

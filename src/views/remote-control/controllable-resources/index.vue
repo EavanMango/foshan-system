@@ -25,7 +25,7 @@
             @keyup.enter.native="handleSearch"
           />
         </el-form-item>
-        <el-form-item label="地市" prop="city">
+        <el-form-item label="地区" prop="city">
           <el-select v-model="queryParams.city" placeholder="请选择" clearable>
             <el-option
               v-for="dict in cityList"
@@ -141,7 +141,7 @@
             @keyup.enter.native="handleSearch"
           />
         </el-form-item>
-        <el-form-item label="地市" prop="city">
+        <el-form-item label="地区" prop="city">
           <el-select
             v-model="queryParamsDialog.city"
             placeholder="请选择"
@@ -234,7 +234,7 @@ export default {
         },
 
         {
-          label: '地市',
+          label: '地区',
           prop: 'city',
           sortable: 'custom',
         },

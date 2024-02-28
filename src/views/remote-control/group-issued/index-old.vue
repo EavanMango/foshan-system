@@ -188,7 +188,7 @@ export default {
           prop: 'consNo',
         },
         {
-          label: '地市',
+          label: '地区',
           prop: 'city',
         },
         {

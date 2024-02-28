@@ -123,7 +123,7 @@ export default {
       const series = data.map(d => {
         d.type = 'line';
         d.connectNulls = true;
-        d.smooth = false;
+        d.smooth = true;
         d.symbolSize = 0;
         d.markPoint = markPoint;
         d.itemStyle = {

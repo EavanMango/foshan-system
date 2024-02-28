@@ -18,7 +18,7 @@ export const HttpUrl = {
   monitorConsList: new APIConfig('/monitorConsList'),
   /** 查询负荷曲线 */
   queryCurveP: new APIConfig('/queryCurveP'),
-  /** 地市-行业下用户信息查询 */
+  /** 地区-行业下用户信息查询 */
   queryAreaOrTradeInfo: new APIConfig('/queryAreaOrTradeInfo'),
   /** 用户运行参数查询 */
   queryConsRunInfo: new APIConfig('/queryConsRunInfo'),
@@ -26,7 +26,7 @@ export const HttpUrl = {
   queryConsTree: new APIConfig('/queryConsTree'),
   /** 设备运行参数查询 */
   queryEquipRunInfo: new APIConfig('/queryEquipRunInfo'),
-  /** 地市-行业下用户信息查询 */
+  /** 地区-行业下用户信息查询 */
   queryAreaOrTradeInfo: new APIConfig('/queryAreaOrTradeInfo'),
   /** 设备量测曲线查询 */
   queryEquipMeasCurve: new APIConfig('/queryEquipMeasCurve'),

@@ -36,7 +36,7 @@
               size="mini"
               @change="initData"
             >
-              <el-radio-button :label="1">地市</el-radio-button>
+              <el-radio-button :label="1">地区</el-radio-button>
               <el-radio-button :label="2">行业</el-radio-button>
             </el-radio-group>
           </div>

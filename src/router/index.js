@@ -98,8 +98,8 @@ export const asyncRoutes = [
         hidden: false,
         component: () => import('@/views/load-monitor/city-monitor'),
         meta: {
-          title: '地市监测',
-          icon: '地市监测',
+          title: '地区监测',
+          icon: '地区监测',
         },
       },
       {
@@ -114,10 +114,10 @@ export const asyncRoutes = [
       },
 
       {
-        name: 'HistoryMonitor',
-        path: 'history-monitor',
+        name: 'userMonitor',
+        path: 'user-monitor',
         hidden: false,
-        component: () => import('@/views/load-monitor/history-monitor'),
+        component: () => import('@/views/load-monitor/user-monitor'),
         meta: {
           title: '用户监测',
           icon: '用户监测',

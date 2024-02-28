@@ -3,8 +3,8 @@
  * @Author       : 陈凯
  * @Date         : 2023-08-11 17:32:29
  * @LastEditors  : 陈凯
- * @LastEditTime : 2024-01-31 09:28:21
- * @FilePath     : \init-project\src\views\file-management\enterprise-file\index.vue
+ * @LastEditTime : 2024-02-28 09:09:36
+ * @FilePath     : \foushan-system\src\views\file-management\enterprise-file\index.vue
 -->
 <template>
   <div class="app-container">
@@ -27,16 +27,7 @@
           />
         </el-form-item>
 
-        <el-form-item v-if="isFold">
-          <el-button
-            icon="el-icon-search"
-            type="primary"
-            size="mini"
-            @click="handleSearch"
-            >查询</el-button
-          >
-        </el-form-item>
-        <el-form-item label="地市" prop="roleKey" v-if="!isFold">
+        <el-form-item label="地区" prop="roleKey">
           <el-select v-model="queryParams.city" placeholder="请选择" clearable>
             <el-option
               v-for="dict in cityList"
@@ -46,7 +37,7 @@
             />
           </el-select>
         </el-form-item>
-        <el-form-item label="用户类型" prop="tradeCate" v-if="!isFold">
+        <el-form-item label="用户类型" prop="tradeCate">
           <el-select
             v-model="queryParams.tradeCate"
             placeholder="请选择"
@@ -60,21 +51,8 @@
             />
           </el-select>
         </el-form-item>
-        <el-form-item label="档案状态" prop="archiveStatus" v-if="!isFold">
-          <el-select
-            v-model="queryParams.archiveStatus"
-            placeholder="请选择"
-            clearable
-          >
-            <el-option
-              v-for="dict in archivesStatusOptions"
-              :key="dict.dictValue"
-              :label="dict.dictLabel"
-              :value="dict.dictValue"
-            />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="接入日期" prop="createDate" v-if="!isFold">
+
+        <el-form-item label="接入日期" prop="createDate">
           <el-date-picker
             :picker-options="pickerOptions"
             v-model="dateRange"
@@ -86,28 +64,21 @@
             end-placeholder="结束日期"
           />
         </el-form-item>
-        <el-form-item label="数据来源" prop="dataChannalType" v-if="!isFold">
-          <el-select
-            v-model="queryParams.dataChannalType"
-            placeholder="请选择"
-            clearable
-          >
-            <el-option
-              v-for="dict in dataChannalTypeOptions"
-              :key="dict.dictValue"
-              :label="dict.dictLabel"
-              :value="dict.dictValue"
-            />
-          </el-select>
-        </el-form-item>
 
-        <div class="float-right" v-if="!isFold">
+        <div class="float-right padding-top-5">
           <el-button
-            icon="el-icon-document"
+            icon="el-icon-search"
+            type="primary"
+            size="mini"
+            @click="handleSearch"
+            >查询</el-button
+          >
+          <el-button
+            icon="el-icon-refresh"
             size="mini"
             class="commonBtn"
-            @click="handleTemplate"
-            >模板下载</el-button
+            @click="refreshData"
+            >重置</el-button
           >
           <el-upload
             action="https://jsonplaceholder.typicode.com/posts/"
@@ -127,52 +98,13 @@
             @click="handleExport"
             >导出</el-button
           >
-          <el-button
-            icon="el-icon-delete"
-            type="danger"
-            size="mini"
-            @click="handleMoreDelete"
-            >删除</el-button
-          >
+
           <el-button
             icon="el-icon-plus"
             type="primary"
             size="mini"
             @click="handleAdd"
             >新增</el-button
-          >
-          <el-button
-            icon="el-icon-search"
-            type="primary"
-            size="mini"
-            @click="handleSearch"
-            >查询</el-button
-          >
-        </div>
-        <!--  -->
-        <div class="absolute-top-right-10">
-          <el-button
-            icon="el-icon-refresh"
-            size="mini"
-            class="commonBtn"
-            @click="refreshData"
-            >刷新</el-button
-          >
-          <el-button
-            v-if="isFold"
-            icon="el-icon-d-arrow-right"
-            size="mini"
-            class="commonBtn"
-            @click="isFold = false"
-            >展开</el-button
-          >
-          <el-button
-            v-if="!isFold"
-            icon="el-icon-d-arrow-left"
-            size="mini"
-            class="commonBtn"
-            @click="isFold = true"
-            >收起</el-button
           >
         </div>
       </el-form>
@@ -201,7 +133,7 @@
             label="操作"
             align="center"
             class-name="small-padding"
-            :width="echartFontSize(210)"
+            :width="echartFontSize(290)"
           >
             <template slot-scope="scope">
               <el-button
@@ -220,13 +152,13 @@
                 @click="handleEdit(scope.row, 2)"
                 >修改</el-button
               >
-              <!-- <el-button
+              <el-button
                 size="mini"
                 icon="el-icon-delete"
                 class="tableDeleteBtn"
                 @click="handleDelete(scope.row)"
                 >删除</el-button
-              > -->
+              >
             </template>
           </el-table-column>
         </template>
@@ -577,24 +509,24 @@ export default {
         },
       },
       isFold: true,
-      loading: true,
+      loading: false,
       tradeCateOptions: [],
       // 表格
       tableDataSelectOptions: [],
       tableData: [],
       tableColumns: [
         {
-          label: '企业名称',
+          label: '用户名',
           prop: 'name',
           sortable: 'custom',
         },
         {
-          label: '企业户号',
+          label: '户号',
           prop: 'consNo',
           sortable: 'custom',
         },
         {
-          label: '地市',
+          label: '地区',
           prop: 'city',
           sortable: 'custom',
         },
@@ -613,11 +545,7 @@ export default {
           prop: 'powerReceivingCapacity',
           sortable: 'custom',
         },
-        {
-          label: '调节设备对象',
-          prop: 'adjustEquipType',
-          sortable: 'custom',
-        },
+
         {
           label: '设备数量',
           prop: 'num',
@@ -627,11 +555,6 @@ export default {
         {
           label: '接入日期',
           prop: 'createDate',
-          sortable: 'custom',
-        },
-        {
-          label: '数据来源',
-          prop: 'dataChannalType',
           sortable: 'custom',
         },
       ],
@@ -774,18 +697,124 @@ export default {
         this.queryParams.createStartDate = this.dateRange[0];
         this.queryParams.createEndDate = this.dateRange[1];
       }
-      this.loading = true;
-      HttpUrl.listConsumer(this.queryParams).then(res => {
-        this.tableData = res.data.data;
-        this.$nextTick(() => {
-          this.queryParams.total = res.data.total;
-        });
-        this.loading = false;
-        if (this.tableData.length == 0 && this.queryParams.pageNum > 1) {
-          this.queryParams.pageNum = this.queryParams.pageNum - 1;
-          this.getList();
-        }
+      // this.loading = true;
+      // HttpUrl.listConsumer(this.queryParams).then(res => {
+      //   this.tableData = res.data.data;
+      //   this.$nextTick(() => {
+      //     this.queryParams.total = res.data.total;
+      //   });
+      //   this.loading = false;
+      //   if (this.tableData.length == 0 && this.queryParams.pageNum > 1) {
+      //     this.queryParams.pageNum = this.queryParams.pageNum - 1;
+      //     this.getList();
+      //   }
+      // });
+
+      let res = {
+        message: '成功',
+        code: 200,
+        data: {
+          pageNum: 1,
+          pageSize: 10,
+          total: 878,
+          data: [
+            {
+              id: 10000000004,
+              name: '',
+              consNo: '3203002625815',
+              city: '顺德',
+              tradeCate: '商业及服务',
+              consStatus: '运营',
+              dataChannalType: '物联平台',
+              powerReceivingCapacity: 1280.0,
+              num: 11,
+              archiveStatus: '已入库',
+              createTime: null,
+              createDate: '2023-09-07',
+              accuracy: null,
+              fcstDate: null,
+              consNowStatus: null,
+              adjustEquipType: '空调',
+            },
+            {
+              id: 100000000106,
+              name: '',
+              consNo: '3200157122930',
+              city: '高明',
+              tradeCate: '商业及服务',
+              consStatus: '运营',
+              dataChannalType: '物联平台',
+              powerReceivingCapacity: 2500.0,
+              num: 3,
+              archiveStatus: '已入库',
+              createTime: null,
+              createDate: '2023-08-14',
+              accuracy: null,
+              fcstDate: null,
+              consNowStatus: null,
+              adjustEquipType: '空调',
+            },
+            {
+              id: 100000000107,
+              name: '',
+              consNo: '3200141008268',
+              city: '禅城',
+              tradeCate: '电网资源',
+              consStatus: '运营',
+              dataChannalType: '物联平台',
+              powerReceivingCapacity: 9000.0,
+              num: 6,
+              archiveStatus: '已入库',
+              createTime: null,
+              createDate: '2022-08-18',
+              accuracy: null,
+              fcstDate: null,
+              consNowStatus: null,
+              adjustEquipType: '空调',
+            },
+            {
+              id: 100000000108,
+              name: '',
+              consNo: '3200156983437',
+              city: '南海',
+              tradeCate: '商业及服务',
+              consStatus: '运营',
+              dataChannalType: '物联平台',
+              powerReceivingCapacity: 7200.0,
+              num: 3,
+              archiveStatus: '已入库',
+              createTime: null,
+              createDate: '2023-07-20',
+              accuracy: null,
+              fcstDate: null,
+              consNowStatus: null,
+              adjustEquipType: '空调',
+            },
+            {
+              id: 100000000109,
+              name: '',
+              consNo: '3203002128205',
+              city: '三水',
+              tradeCate: '商业及服务',
+              consStatus: '运营',
+              dataChannalType: '物联平台',
+              powerReceivingCapacity: 2000.0,
+              num: 3,
+              archiveStatus: '已入库',
+              createTime: null,
+              createDate: '2023-08-14',
+              accuracy: null,
+              fcstDate: null,
+              consNowStatus: null,
+              adjustEquipType: '空调',
+            },
+          ],
+        },
+      };
+      this.$nextTick(() => {
+        this.queryParams.total = res.data.total;
       });
+      this.tableData = res.data.data;
     },
     // 表格查询
     handleSearch() {
@@ -832,7 +861,7 @@ export default {
       this.title = row.name ? row.name : '修改';
       this.showDialog = true;
     },
-    // 切换地市查询区县
+    // 切换地区查询区县
     changeCitys(param) {
       areaUrl.getAreaListByParentId({ param }).then(res => {
         this.areaList = res.data;
@@ -1062,7 +1091,7 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep .query-container .el-form-item {
-  width: 21%;
+  width: 17%;
 }
 
 ::v-deep .query-container .el-form-item__content {

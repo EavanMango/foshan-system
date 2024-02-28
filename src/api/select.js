@@ -7,14 +7,14 @@ export function getSelectOptons(dictType) {
         data: { param: dictType }
     })
 }
-// 查询地市接口
+// 查询地区接口
 export function getAreaList() {
     return request({
         url: process.env.VUE_APP_SERVER_PERFORM_API + '/sysArea/getJSAreaList',
         method: 'post',
     })
 }
-// 根据地市查询区县
+// 根据地区查询区县
 export function getAreaListByParentId(data) {
     return request({
         url: process.env.VUE_APP_SERVER_PERFORM_API + '/sysArea/getAreaListByParentId',

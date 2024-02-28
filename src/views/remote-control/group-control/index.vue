@@ -148,10 +148,10 @@ export default {
   },
   data() {
     return {
-      treeTitle: '',
+      treeTitle: '全部用户',
       searchInfo: '',
       treeData: Servce.treeData,
-      loading: true,
+      loading: false,
       tableDataSelectOptions: [],
       tableData: Servce.tableData,
       tableColumns: Servce.tableColumns,
@@ -168,13 +168,119 @@ export default {
   },
   methods: {
     async initData() {
-      await this.getTreeData();
-      if (!this.treeData.length) return;
-      this.treeTitle = this.treeData[0].groupName;
-      this.$nextTick(async () => {
-        this.queryParams.id = this.treeData[0].groupId;
-        await this.getTableData();
+      // await this.getTreeData();
+      // if (!this.treeData.length) return;
+      // this.treeTitle = this.treeData[0].groupName;
+      // this.$nextTick(async () => {
+      //   this.queryParams.id = this.treeData[0].groupId;
+      //   await this.getTableData();
+      // });
+      let res = {
+        message: '成功',
+        code: 200,
+        data: [
+          {
+            groupName: '全部用户',
+            groupId: '1699670421147582466',
+          },
+          {
+            groupName: '供电所用户',
+            groupId: '1701869284832649218',
+          },
+          {
+            groupName: '顺德区用户',
+            groupId: '1699670421147582465',
+          },
+          {
+            groupName: '高明区用户',
+            groupId: '1701869284832649236',
+          },
+          {
+            groupName: '禅城区用户',
+            groupId: '1699670421147582462',
+          },
+          {
+            groupName: '南海区用户',
+            groupId: '1701869284832649277',
+          },
+          {
+            groupName: '三水区用户',
+            groupId: '1699670421147582455',
+          },
+          {
+            groupName: '大客户',
+            groupId: '1699670421147582477',
+          },
+        ],
+      };
+      this.treeData = res.data.map((d, i) => {
+        d.index = i + 1;
+        d.groupId = '' + d.groupId;
+        return d;
       });
+      let res2 = {
+        message: '成功',
+        code: 200,
+        data: {
+          pageNum: 1,
+          pageSize: 10,
+          total: 5,
+          data: [
+            {
+              consId: '10000000004',
+              consNo: '32030xxx25815',
+              consName: '顺德区供电所',
+              city: '顺德',
+              trade: '供电所',
+              equipId: '160000000565',
+              equipName: '顺德区供电所空调用电总表',
+              powerReceivingCapacity: null,
+            },
+            {
+              consId: '100000000110',
+              consNo: '320xxxx059676',
+              consName: '高明区供电所',
+              city: '高明',
+              trade: '供电所',
+              equipId: '160000000019',
+              equipName: '高明区供电所空调用电总表',
+              powerReceivingCapacity: null,
+            },
+            {
+              consId: '100000000110',
+              consNo: '320xxxx059676',
+              consName: '禅城区供电所',
+              city: '禅城',
+              trade: '供电所',
+              equipId: '160000000019',
+              equipName: '禅城区供电所空调用电总表',
+              powerReceivingCapacity: null,
+            },
+            {
+              consId: '100000000110',
+              consNo: '320xxxx059676',
+              consName: '南海区供电所',
+              city: '南海',
+              trade: '供电所',
+              equipId: '160000000019',
+              equipName: '南海区供电所空调用电总表',
+              powerReceivingCapacity: null,
+            },
+            {
+              consId: '100000000110',
+              consNo: '320xxxx059676',
+              consName: '三水区供电所',
+              city: '三水',
+              trade: '供电所',
+              equipId: '160000000019',
+              equipName: '三水区供电所空调用电总表',
+              powerReceivingCapacity: null,
+            },
+          ],
+        },
+      };
+      this.tableData = res2.data.data;
+      this.queryParams.total = res2.data.total;
     },
     async getTreeData() {
       this.loading = true;

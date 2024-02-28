@@ -3,8 +3,8 @@
  * @Author       : 陈凯
  * @Date         : 2023-09-07 15:10:13
  * @LastEditors  : 陈凯
- * @LastEditTime : 2024-02-01 11:03:53
- * @FilePath     : \init-project\src\views\remote-control\group-issued\index.vue
+ * @LastEditTime : 2024-02-28 10:47:46
+ * @FilePath     : \foushan-system\src\views\remote-control\group-issued\index.vue
 -->
 
 <template>
@@ -125,6 +125,24 @@
             @selectionChange="selectionChange"
             @refreshActionData="refreshActionData"
           >
+            <template #end>
+              <el-table-column
+                label="操作"
+                align="center"
+                class-name="small-padding"
+              >
+                <template slot-scope="scope">
+                  <el-button
+                    size="mini"
+                    style="margin-right: 10px"
+                    icon="el-icon-view"
+                    class="tableBtn"
+                    @click="handleView(scope)"
+                    >详情</el-button
+                  >
+                </template>
+              </el-table-column>
+            </template>
           </control-table>
           <img
             v-else
@@ -182,6 +200,23 @@
         </div>
       </div>
     </div>
+    <element-dialog
+      width="35%"
+      title="详情"
+      v-model="showDialog"
+      ref="elementDialog"
+      :showCloseButton="true"
+    >
+      <div>
+        <elementTable
+          :tableData="tableDataDraft"
+          :tableColumns="tableColumnsDraft"
+          :pagination="false"
+          :showSelect="false"
+        >
+        </elementTable>
+      </div>
+    </element-dialog>
   </div>
 </template>
 
@@ -234,7 +269,7 @@ export default {
           prop: 'consNo',
         },
         {
-          label: '地市',
+          label: '地区',
           prop: 'city',
         },
         {
@@ -307,7 +342,190 @@ export default {
     HttpUrl.getGroupList({ param: '' }).then(res => {
       this.commandStrategyOptions = res.data;
     });
-    this.handleDraftBox();
+    // this.handleDraftBox();
+    let res = {
+      message: '成功',
+      code: 200,
+      data: {
+        ctrlEvent: {
+          id: '197',
+          name: '1',
+          code: '20240228092152',
+          loadValue: '1',
+          startTime: '2024-02-28 00:00:00',
+          endTime: '2024-02-28 00:00:00',
+          takePartType: '1',
+          commandType: '01',
+          groupId: '1699670421147582466',
+        },
+        actionData: [
+          {
+            id: '100000000302',
+            consNo: '3201000844856',
+            consName: '恒顺商城',
+            city: '镇江',
+            isOnline: null,
+            loadValue: 609.76,
+            downLoad: 1.5,
+          },
+        ],
+        allData: [
+          {
+            id: '100000000302',
+            consNo: '3201000844856',
+            consName: '-',
+            city: '顺德',
+            isOnline: null,
+            loadValue: 609.76,
+            downLoad: 1.5,
+          },
+          {
+            id: '100000000110',
+            consNo: '3200157059676',
+            consName: '-',
+            city: '顺德',
+            isOnline: null,
+            loadValue: 489.06,
+            downLoad: 0.0,
+          },
+          {
+            id: '10000000004',
+            consNo: '3203002625815',
+            consName: '-',
+            city: '顺德',
+            isOnline: null,
+            loadValue: 430.62,
+            downLoad: 0.0,
+          },
+          {
+            id: '100000000106',
+            consNo: '3200157122930',
+            consName: '-',
+            city: '顺德',
+            isOnline: null,
+            loadValue: 286.53,
+            downLoad: 0.0,
+          },
+          {
+            id: '100000000296',
+            consNo: '3206006041674',
+            consName: '-',
+            city: '顺德',
+            isOnline: null,
+            loadValue: 36.86,
+            downLoad: 0.0,
+          },
+          {
+            id: '100000000109',
+            consNo: '3203002128205',
+            consName: '-',
+            city: '顺德',
+            isOnline: null,
+            loadValue: null,
+            downLoad: 0.0,
+          },
+        ],
+      },
+    };
+    let res2 = {
+      message: '成功',
+      code: 200,
+      data: {
+        pageNum: 1,
+        pageSize: 2147483647,
+        total: 5,
+        data: [
+          {
+            id: 196,
+            name: '1',
+            code: '20240228092152',
+            loadValue: '1.00',
+            startTime: '2024-02-28 00:00:00',
+            endTime: '2024-02-28 00:00:00',
+            takePartType: '邀约',
+            commandType: '削峰',
+            groupName: '0907验收调试',
+            consNum: null,
+            underLoad: null,
+            respondLoad: null,
+            finishRate: null,
+            state: '已生成待下发',
+          },
+          {
+            id: 197,
+            name: '1',
+            code: '20240228092152',
+            loadValue: '1.00',
+            startTime: '2024-02-28 00:00:00',
+            endTime: '2024-02-28 00:00:00',
+            takePartType: '邀约',
+            commandType: '削峰',
+            groupName: '0907验收调试',
+            consNum: null,
+            underLoad: null,
+            respondLoad: null,
+            finishRate: null,
+            state: '已生成待下发',
+          },
+          {
+            id: 198,
+            name: '1',
+            code: '20240228092152',
+            loadValue: '1.00',
+            startTime: '2024-02-28 00:00:00',
+            endTime: '2024-02-28 00:00:00',
+            takePartType: '邀约',
+            commandType: '削峰',
+            groupName: '0907验收调试',
+            consNum: null,
+            underLoad: null,
+            respondLoad: null,
+            finishRate: null,
+            state: '已生成待下发',
+          },
+          {
+            id: 185,
+            name: '1',
+            code: '20240226141026',
+            loadValue: '10.00',
+            startTime: '2024-02-26 14:12:00',
+            endTime: '2024-02-26 14:17:00',
+            takePartType: '邀约',
+            commandType: '削峰',
+            groupName: '0221常州',
+            consNum: null,
+            underLoad: null,
+            respondLoad: null,
+            finishRate: null,
+            state: '已生成待下发',
+          },
+          {
+            id: 186,
+            name: '1',
+            code: '20240226141026',
+            loadValue: '10.00',
+            startTime: '2024-02-26 14:12:00',
+            endTime: '2024-02-26 14:17:00',
+            takePartType: '邀约',
+            commandType: '削峰',
+            groupName: '0221常州',
+            consNum: null,
+            underLoad: null,
+            respondLoad: null,
+            finishRate: null,
+            state: '已生成待下发',
+          },
+        ],
+      },
+    };
+    this.tableData = res.data.allData;
+
+    this.form = res.data.ctrlEvent;
+    this.tableData.forEach(val => {
+      val.rate =
+        Number((val.downLoad / this.form.loadValue) * 100).toFixed(2) + '%';
+    });
+    this.tableDataDraft = res2.data.data;
   },
 
   methods: {
@@ -533,6 +751,9 @@ export default {
     // 编辑待下发
     editCommand(e) {
       this.getProjectMethod(e.id);
+    },
+    handleView() {
+      this.showDialog = true;
     },
   },
 };

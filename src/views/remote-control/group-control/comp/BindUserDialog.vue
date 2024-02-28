@@ -22,7 +22,7 @@
             @keyup.enter.native="handleSearch"
           />
         </el-form-item>
-        <el-form-item label="地市" prop="city">
+        <el-form-item label="地区" prop="city">
           <el-select
             v-model="queryParams.city"
             placeholder="请选择"

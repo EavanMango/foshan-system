@@ -49,7 +49,7 @@
             @handleDate="handleEndDate"
           />
         </el-form-item>
-        <el-form-item label="地市">
+        <el-form-item label="地区">
           <el-select v-model="form.city" placeholder="请选择" clearable>
             <el-option
               v-for="dict in cityList"
@@ -161,7 +161,7 @@ export default {
           prop: 'consNo',
         },
         {
-          label: '地市',
+          label: '地区',
           prop: 'city',
         },
         {
@@ -214,7 +214,7 @@ export default {
         return;
       }
       if (!this.form.city) {
-        this.$message.warning('请选择地市');
+        this.$message.warning('请选择地区');
         return;
       }
       this.loading = true;

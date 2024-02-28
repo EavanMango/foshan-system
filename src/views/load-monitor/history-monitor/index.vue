@@ -41,7 +41,7 @@
           />
         </el-form-item>
         <el-form-item
-          label="地市"
+          label="地区"
           prop="city"
           label-width="3.75rem"
           v-if="!isFold"

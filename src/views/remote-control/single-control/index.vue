@@ -3,13 +3,13 @@
  * @Author       : 陈凯
  * @Date         : 2023-08-30 16:13:56
  * @LastEditors  : 陈凯
- * @LastEditTime : 2024-02-01 10:51:06
- * @FilePath     : \init-project\src\views\remote-control\single-control\index.vue
+ * @LastEditTime : 2024-02-28 10:37:24
+ * @FilePath     : \foushan-system\src\views\remote-control\single-control\index.vue
 -->
 
 <template>
   <div class="app-container relative">
-    <div class="changeBtn">
+    <!-- <div class="changeBtn">
       <div
         class="card flex_row_c"
         :class="{ hasChoose: whichShow == 1 }"
@@ -24,7 +24,7 @@
       >
         <img src="../../../assets/remote-control/表格-白.png" height="60%" />
       </div>
-    </div>
+    </div> -->
     <!-- 标注 -->
     <div
       class="absolute-top-right-10 flex_row_a"
@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="show-container two-container">
-      <transition name="leftBox" :appear="true">
+      <!-- <transition name="leftBox" :appear="true">
         <div class="leftTree card-container flex_col_c">
           <el-autocomplete
             style="width: 95%"
@@ -72,72 +72,71 @@
             />
           </div>
         </div>
-      </transition>
-      <transition name="rightBox" :appear="true">
-        <div class="rightCard card-container" v-if="whichShow == 1">
+      </transition> -->
+      <div class="rightCard card-container" v-if="whichShow == 1">
+        <div
+          class="allBox"
+          v-if="cardData.length != 0"
+          v-loading="rightCardLoading"
+          element-loading-background="rgba(0, 0, 0, 0.8)"
+        >
           <div
-            class="allBox"
-            v-if="cardData.length != 0"
-            v-loading="rightCardLoading"
-            element-loading-background="rgba(0, 0, 0, 0.8)"
+            class="eachBox"
+            v-for="(item, index) in cardData"
+            :key="index"
+            @click="handleDetail(item)"
+            :class="{ stateActive: item.state == '运行' }"
           >
-            <div
-              class="eachBox"
-              v-for="(item, index) in cardData"
-              :key="index"
-              @click="handleDetail(item)"
-              :class="{ stateActive: item.state == '运行' }"
-            >
-              <img
-                style="position: absolute"
-                height="100%"
-                width="100%"
-                :src="item.state == '运行' ? cardOpenImg : cardCloseImg"
-                alt=""
-              />
+            <img
+              style="position: absolute"
+              height="100%"
+              width="100%"
+              :src="item.state == '运行' ? cardOpenImg : cardCloseImg"
+              alt=""
+            />
 
-              <div class="top">
-                <div class="title">
-                  <div
-                    class="circle"
-                    :class="{ stateOpen: item.state == '运行' }"
-                  ></div>
-                  {{ item.name }}
-                  <img
-                    v-if="item.type == 2001 || item.type == 2002"
-                    style="height: 1.25rem; right: 1.25rem"
-                    class="absolute-top-right-10"
-                    src="../../../assets/remote-control/组 25702@2.png"
-                  />
-                  <img
-                    v-if="item.type == 2003"
-                    style="height: 1.25rem; right: 1.25rem"
-                    class="absolute-top-right-10"
-                    src="../../../assets/remote-control/组 25698@2.png"
-                  />
-                  <img
-                    v-if="item.type == 2004"
-                    style="height: 1.25rem; right: 1.25rem"
-                    class="absolute-top-right-10"
-                    src="../../../assets/remote-control/组 25699@2.png"
-                  />
-                </div>
-                <div class="temperature">
-                  <div class="tempNum">
-                    <div>
-                      <span
-                        style="
-                          font-size: 3.125rem;
-                          font-weight: bold;
-                          font-family: 'ysbth';
-                        "
-                        >{{ item.roomTemp ? item.roomTemp : '-' }}</span
-                      >
-                      &nbsp;℃
-                    </div>
-                    <div>室内温度</div>
+            <div class="top">
+              <div class="title">
+                <div
+                  class="circle"
+                  :class="{ stateOpen: item.state == '运行' }"
+                ></div>
+                {{ item.name }}
+                <img
+                  v-if="item.type == 2001 || item.type == 2002"
+                  style="height: 1.25rem; right: 1.25rem"
+                  class="absolute-top-right-10"
+                  src="../../../assets/remote-control/组 25702@2.png"
+                />
+                <img
+                  v-if="item.type == 2003"
+                  style="height: 1.25rem; right: 1.25rem"
+                  class="absolute-top-right-10"
+                  src="../../../assets/remote-control/组 25698@2.png"
+                />
+                <img
+                  v-if="item.type == 2004"
+                  style="height: 1.25rem; right: 1.25rem"
+                  class="absolute-top-right-10"
+                  src="../../../assets/remote-control/组 25699@2.png"
+                />
+              </div>
+              <div class="temperature">
+                <div class="tempNum">
+                  <div>
+                    <span
+                      style="
+                        font-size: 3.125rem;
+                        font-weight: bold;
+                        font-family: 'ysbth';
+                      "
+                      >{{ item.roomTemp ? item.roomTemp : '-' }}</span
+                    >
+                    &nbsp;℃
                   </div>
-                  <!-- <div
+                  <div>室内温度</div>
+                </div>
+                <!-- <div
                   class="mianban"
                   :class="{ stateOpen: item.state == '运行' }"
                 >
@@ -146,77 +145,77 @@
                   </div>
                   <div class="bottomTitle">设定温度</div>
                 </div> -->
-                  <div
-                    style="width: 50%"
-                    v-if="item.equipTypeName != '分体式空调'"
-                  >
-                    <tempChart
-                      pieTitle="设定温度"
-                      :pieData="item.tempNum"
-                      :state="item.state"
-                    />
-                  </div>
+                <div
+                  style="width: 50%"
+                  v-if="item.equipTypeName != '分体式空调'"
+                >
+                  <tempChart
+                    pieTitle="设定温度"
+                    :pieData="item.tempNum"
+                    :state="item.state"
+                  />
+                </div>
 
-                  <div
-                    style="width: 50%"
-                    v-if="item.equipTypeName == '分体式空调'"
-                  >
-                    <tempChart
-                      pieTitle="当前功率"
-                      :pieData="item.loadValue"
-                      :state="item.state"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="bottom">
-                <div v-if="item.equipTypeName != '分体式空调'">
-                  当前功率(kW):&nbsp;<span
-                    style="font-size: 1.125rem; font-weight: bold"
-                    >{{ item.loadValue ? item.loadValue : '-' }}</span
-                  >
-                </div>
-                <div v-if="item.equipTypeName == '分体式空调'">
-                  设定温度(℃):&nbsp;<span
-                    style="font-size: 1.125rem; font-weight: bold"
-                    >{{ item.tempNum ? item.tempNum : '-' }}</span
-                  >
-                </div>
-                <div style="font-family: 'ysbth'">
-                  {{ item.equipTypeName }}
+                <div
+                  style="width: 50%"
+                  v-if="item.equipTypeName == '分体式空调'"
+                >
+                  <tempChart
+                    pieTitle="当前功率"
+                    :pieData="item.loadValue"
+                    :state="item.state"
+                  />
                 </div>
               </div>
             </div>
-          </div>
-          <div
-            class="noInforBox"
-            v-loading="rightCardLoading"
-            element-loading-background="rgba(0, 0, 0, 0.8)"
-            v-else
-          >
-            <img
-              height="50%"
-              src="../../../assets/remote-control/noWord2.png"
-              alt=""
-            />
+            <div class="bottom">
+              <div v-if="item.equipTypeName != '分体式空调'">
+                当前功率(kW):&nbsp;<span
+                  style="font-size: 1.125rem; font-weight: bold"
+                  >{{ item.loadValue ? item.loadValue : '-' }}</span
+                >
+              </div>
+              <div v-if="item.equipTypeName == '分体式空调'">
+                设定温度(℃):&nbsp;<span
+                  style="font-size: 1.125rem; font-weight: bold"
+                  >{{ item.tempNum ? item.tempNum : '-' }}</span
+                >
+              </div>
+              <div style="font-family: 'ysbth'">
+                {{ item.equipTypeName }}
+              </div>
+            </div>
           </div>
         </div>
-        <div class="rightCard" v-else>
-          <el-form
-            :model="queryParams"
-            :inline="true"
-            label-width="6.875rem"
-            class="query-container card-container relative two-container flex_row_l"
-          >
-            <el-form-item label="设备名称/编号">
-              <el-input
-                v-model="queryParams.equipName"
-                placeholder="请输入设备名称或编号"
-                clearable
-              />
-            </el-form-item>
+        <div
+          class="noInforBox"
+          v-loading="rightCardLoading"
+          element-loading-background="rgba(0, 0, 0, 0.8)"
+          v-else
+        >
+          <img
+            height="50%"
+            src="../../../assets/remote-control/noWord2.png"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="rightCard" v-else>
+        <el-form
+          :model="queryParams"
+          :inline="true"
+          label-width="6.875rem"
+          class="query-container card-container relative two-container flex_row_l"
+        >
+          <el-form-item label="设备名称/编号">
+            <el-input
+              v-model="queryParams.equipName"
+              placeholder="请输入设备名称或编号"
+              clearable
+            />
+          </el-form-item>
 
-            <!-- <el-form-item label="用户名称/编号">
+          <!-- <el-form-item label="用户名称/编号">
             <el-input
               v-model="queryParams.consName"
               placeholder="请输入用户名称或编号"
@@ -224,59 +223,58 @@
             />
           </el-form-item> -->
 
-            <div class="absolute-top-right-10">
-              <el-button
-                icon="el-icon-search"
-                type="primary"
-                size="mini"
-                @click="handleSearch"
-                @keyup.enter="handleSearch"
-                >查询</el-button
-              >
-              <el-button
-                icon="el-icon-refresh-right"
-                size="mini"
-                class="commonBtn"
-                >重置</el-button
-              >
-            </div>
-          </el-form>
-          <!-- 表格数据 -->
-          <div
-            class="two-container card-container margin-top-10"
-            style="height: calc(100% - 70px)"
-          >
-            <custom-table
-              :loading="loading"
-              :tableData="tableData"
-              :tableColumns="tableColumns"
-              :paginationConfig="queryParams"
-              @page-current-change="handlePageCurrentChange"
-              @pageNum-current-change="handleNumChange"
+          <div class="absolute-top-right-10">
+            <el-button
+              icon="el-icon-search"
+              type="primary"
+              size="mini"
+              @click="handleSearch"
+              @keyup.enter="handleSearch"
+              >查询</el-button
             >
-              <template #end>
-                <el-table-column
-                  label="操作"
-                  align="center"
-                  class-name="small-padding"
-                  width="180"
-                >
-                  <template slot-scope="scope">
-                    <el-button
-                      v-hasPermi="['system:role:edit']"
-                      size="mini"
-                      icon="el-icon-setting"
-                      @click="handleDetail(scope.row)"
-                      class="tableBtn blue"
-                      >控制</el-button
-                    >
-                  </template>
-                </el-table-column>
-              </template>
-            </custom-table>
+            <el-button
+              icon="el-icon-refresh-right"
+              size="mini"
+              class="commonBtn"
+              >重置</el-button
+            >
           </div>
+        </el-form>
+        <!-- 表格数据 -->
+        <div
+          class="two-container card-container margin-top-10"
+          style="height: calc(100% - 2rem)"
+        >
+          <custom-table
+            :loading="loading"
+            :tableData="tableData"
+            :tableColumns="tableColumns"
+            :paginationConfig="queryParams"
+            @page-current-change="handlePageCurrentChange"
+            @pageNum-current-change="handleNumChange"
+          >
+            <template #end>
+              <el-table-column
+                label="操作"
+                align="center"
+                class-name="small-padding"
+                width="180"
+              >
+                <template slot-scope="scope">
+                  <el-button
+                    v-hasPermi="['system:role:edit']"
+                    size="mini"
+                    icon="el-icon-setting"
+                    @click="handleDetail(scope.row)"
+                    class="tableBtn blue"
+                    >控制</el-button
+                  >
+                </template>
+              </el-table-column>
+            </template>
+          </custom-table>
         </div>
-      </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -296,16 +294,24 @@ export default {
   },
   data() {
     return {
-      whichShow: 1,
+      whichShow: 2,
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now();
         },
       },
       // 遮罩层
-      loading: true,
+      loading: false,
       // 表头数据
       tableColumns: [
+        {
+          label: '设备名称',
+          prop: 'equipName',
+        },
+        {
+          label: '设备编号',
+          prop: 'equipNo',
+        },
         {
           label: '用户名称',
           prop: 'consName',
@@ -315,33 +321,29 @@ export default {
           prop: 'consNo',
         },
         {
-          label: '设备名称',
-          prop: 'equipName',
+          label: '运行状态',
+          prop: 'runStatus',
         },
         {
           label: '设备类型',
           prop: 'typeName',
         },
         {
-          label: '当前状态',
-          prop: 'runStatus',
+          label: '当前功率(kW)',
+          prop: 'nowVal',
         },
         {
           label: '设定温度',
           prop: 'setTemp',
         },
-        {
-          label: '环境温度',
-          prop: 'envTemp',
-        },
+        // {
+        //   label: '环境温度',
+        //   prop: 'envTemp',
+        // },
         // {
         //   label: '额定功率(kW)',
         //   prop: 'ratedPower',
         // },
-        {
-          label: '当前功率(kW)',
-          prop: 'nowVal',
-        },
       ],
       // 角色表格数据
       tableData: [],
@@ -392,6 +394,7 @@ export default {
     //   this.ahuTypeOptions = response.data;
     // });
     this.initTree();
+    this.getList();
   },
   mounted() {
     window.addEventListener('setItem', () => {
@@ -442,13 +445,168 @@ export default {
 
     /** 查询角色列表 */
     getList() {
-      this.loading = true;
-      HttpUrl.queryAirEquipTable(this.queryParams).then(res => {
-        this.tableData = res.data.data;
-        this.$nextTick(() => {
-          this.queryParams.total = res.data.total;
-        });
-        this.loading = false;
+      // this.loading = true;
+      // HttpUrl.queryAirEquipTable(this.queryParams).then(res => {
+      //   this.tableData = res.data.data;
+      //   this.$nextTick(() => {
+      //     this.queryParams.total = res.data.total;
+      //   });
+      //   this.loading = false;
+      // });
+      let res = {
+        message: '成功',
+        code: 200,
+        data: {
+          pageNum: 1,
+          pageSize: 10,
+          total: 18,
+          data: [
+            {
+              id: 160000000146,
+              equipNo: '061900002232',
+              equipName: '昆山空调聚合项目_1201运维采集班空调',
+              type: 2001,
+              typeName: '分体式空调',
+              consNo: '3206892009281',
+              consName: '淀山湖供电所',
+              runStatus: '运行',
+              nowVal: 0.71,
+              capVal: null,
+              setTemp: null,
+              envTemp: '29',
+            },
+            {
+              id: 160000006047,
+              equipNo: '061900002237',
+              equipName: '昆山空调聚合项目_1305所长室空调',
+              type: 2001,
+              typeName: '分体式空调',
+              consNo: '3206892009281',
+              consName: '淀山湖供电所',
+              runStatus: '运行',
+              nowVal: 0.96,
+              capVal: null,
+              setTemp: null,
+              envTemp: '20',
+            },
+            {
+              id: 160000006055,
+              equipNo: '061900002241',
+              equipName: '昆山空调聚合项目_1304会议室空调',
+              type: 2001,
+              typeName: '分体式空调',
+              consNo: '3206892009281',
+              consName: '淀山湖供电所',
+              runStatus: '关闭',
+              nowVal: 0.0,
+              capVal: null,
+              setTemp: null,
+              envTemp: '21',
+            },
+            {
+              id: 160000006068,
+              equipNo: '061900002228',
+              equipName: '昆山空调聚合项目_财务室空调',
+              type: 2001,
+              typeName: '分体式空调',
+              consNo: '3206892009281',
+              consName: '淀山湖供电所',
+              runStatus: '关闭',
+              nowVal: 0.0,
+              capVal: null,
+              setTemp: null,
+              envTemp: '27',
+            },
+            {
+              id: 160000006069,
+              equipNo: '061900002247',
+              equipName: '昆山空调聚合项目_1101营业大厅空调',
+              type: 2001,
+              typeName: '分体式空调',
+              consNo: '3206892009281',
+              consName: '淀山湖供电所',
+              runStatus: '运行',
+              nowVal: 0.05,
+              capVal: null,
+              setTemp: null,
+              envTemp: '21',
+            },
+            {
+              id: 160000006088,
+              equipNo: '061900002230',
+              equipName: '昆山空调聚合项目_1103营业班空调',
+              type: 2001,
+              typeName: '分体式空调',
+              consNo: '3206892009281',
+              consName: '淀山湖供电所',
+              runStatus: '关闭',
+              nowVal: -0.0,
+              capVal: null,
+              setTemp: null,
+              envTemp: '27',
+            },
+            {
+              id: 160000006295,
+              equipNo: '061900002238',
+              equipName: '昆山空调聚合项目_1301专职室空调',
+              type: 2001,
+              typeName: '分体式空调',
+              consNo: '3206892009281',
+              consName: '淀山湖供电所',
+              runStatus: '运行',
+              nowVal: 2.41,
+              capVal: null,
+              setTemp: null,
+              envTemp: '31',
+            },
+            {
+              id: 160000006320,
+              equipNo: '061900002235',
+              equipName: '昆山空调聚合项目_1204运维采集班空调',
+              type: 2001,
+              typeName: '分体式空调',
+              consNo: '3206892009281',
+              consName: '淀山湖供电所',
+              runStatus: '运行',
+              nowVal: 2.85,
+              capVal: null,
+              setTemp: null,
+              envTemp: '28',
+            },
+            {
+              id: 160000006325,
+              equipNo: '061900002243',
+              equipName: '昆山空调聚合项目_1402活动室空调',
+              type: 2001,
+              typeName: '分体式空调',
+              consNo: '3206892009281',
+              consName: '淀山湖供电所',
+              runStatus: '运行',
+              nowVal: 0.04,
+              capVal: null,
+              setTemp: null,
+              envTemp: '21',
+            },
+            {
+              id: 160000006338,
+              equipNo: '061900002240',
+              equipName: '昆山空调聚合项目_1303会议室空调',
+              type: 2001,
+              typeName: '分体式空调',
+              consNo: '3206892009281',
+              consName: '淀山湖供电所',
+              runStatus: '运行',
+              nowVal: 0.04,
+              capVal: null,
+              setTemp: null,
+              envTemp: '15',
+            },
+          ],
+        },
+      };
+      this.tableData = res.data.data;
+      this.$nextTick(() => {
+        this.queryParams.total = res.data.total;
       });
     },
 
@@ -590,7 +748,7 @@ export default {
     }
   }
   .rightCard {
-    width: calc(77% - 15px);
+    width: calc(100%);
     height: 100%;
     border-radius: 20px;
 

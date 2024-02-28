@@ -3,8 +3,8 @@
  * @Author       : 陈凯
  * @Date         : 2023-08-14 18:25:10
  * @LastEditors  : 陈凯
- * @LastEditTime : 2024-01-31 09:49:10
- * @FilePath     : \init-project\src\views\file-management\equipment-file\index.vue
+ * @LastEditTime : 2024-02-28 09:12:38
+ * @FilePath     : \foushan-system\src\views\file-management\equipment-file\index.vue
 -->
 
 <template>
@@ -29,16 +29,7 @@
           />
         </el-form-item>
 
-        <el-form-item v-if="isFold">
-          <el-button
-            icon="el-icon-search"
-            type="primary"
-            size="mini"
-            @click="handleSearch"
-            >查询</el-button
-          >
-        </el-form-item>
-        <el-form-item label="用户名称" prop="consName" v-if="!isFold">
+        <el-form-item label="用户名称" prop="consName">
           <el-input
             v-model="queryParams.consName"
             placeholder="请输入用户名称"
@@ -46,7 +37,7 @@
             @keyup.enter.native="handleSearch"
           />
         </el-form-item>
-        <el-form-item label="设备类型" prop="type" v-if="!isFold">
+        <el-form-item label="设备类型" prop="type">
           <el-select
             v-model="queryParams.type"
             placeholder="请选择设备类型"
@@ -60,21 +51,8 @@
             />
           </el-select>
         </el-form-item>
-        <el-form-item label="量测模型" prop="equipMeasTmplId" v-if="!isFold">
-          <el-select
-            v-model="queryParams.equipMeasTmplId"
-            placeholder="请选择量测模型"
-            clearable
-          >
-            <el-option
-              v-for="dict in dev_tem_options"
-              :key="dict.value"
-              :label="dict.label"
-              :value="dict.value"
-            />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="接入日期" prop="createDate" v-if="!isFold">
+
+        <el-form-item label="接入日期" prop="createDate">
           <el-date-picker
             :picker-options="pickerOptions"
             v-model="dateRange"
@@ -86,28 +64,21 @@
             end-placeholder="结束日期"
           />
         </el-form-item>
-        <el-form-item label="档案状态" prop="status" v-if="!isFold">
-          <el-select
-            v-model="queryParams.status"
-            placeholder="请选择档案状态"
-            clearable
-          >
-            <el-option
-              v-for="dict in archives_status_options"
-              :key="dict.value"
-              :label="dict.label"
-              :value="dict.value"
-            />
-          </el-select>
-        </el-form-item>
 
-        <div class="float-right" v-if="!isFold">
+        <div class="float-right padding-top-5">
           <el-button
-            icon="el-icon-document"
+            icon="el-icon-search"
+            type="primary"
+            size="mini"
+            @click="handleSearch"
+            >查询</el-button
+          >
+          <el-button
+            icon="el-icon-refresh"
             size="mini"
             class="commonBtn"
-            @click="handleTemplate"
-            >模板下载</el-button
+            @click="refreshData"
+            >重置</el-button
           >
           <el-upload
             action="https://jsonplaceholder.typicode.com/posts/"
@@ -127,13 +98,6 @@
             @click="handleExport"
             >导出</el-button
           >
-          <el-button
-            icon="el-icon-delete"
-            type="danger"
-            size="mini"
-            @click="handleMoreDelete"
-            >删除</el-button
-          >
 
           <el-button
             icon="el-icon-plus"
@@ -141,39 +105,6 @@
             size="mini"
             @click="handleAdd"
             >新增</el-button
-          >
-          <el-button
-            icon="el-icon-search"
-            type="primary"
-            size="mini"
-            @click="handleSearch"
-            >查询</el-button
-          >
-        </div>
-        <!--  -->
-        <div class="absolute-top-right-10">
-          <el-button
-            icon="el-icon-refresh"
-            size="mini"
-            class="commonBtn"
-            @click="refreshData"
-            >刷新</el-button
-          >
-          <el-button
-            v-if="isFold"
-            icon="el-icon-d-arrow-right"
-            size="mini"
-            class="commonBtn"
-            @click="isFold = false"
-            >展开</el-button
-          >
-          <el-button
-            v-if="!isFold"
-            icon="el-icon-d-arrow-left"
-            size="mini"
-            class="commonBtn"
-            @click="isFold = true"
-            >收起</el-button
           >
         </div>
       </el-form>
@@ -201,8 +132,17 @@
             label="操作"
             align="center"
             class-name="small-padding"
+            :width="echartFontSize(290)"
           >
             <template slot-scope="scope">
+              <el-button
+                size="mini"
+                style="margin-right: 10px"
+                icon="el-icon-view"
+                class="tableBtn"
+                @click="handleEdit(scope.row)"
+                >详情</el-button
+              >
               <el-button
                 size="mini"
                 style="margin-right: 10px"
@@ -211,13 +151,13 @@
                 @click="handleEdit(scope.row)"
                 >修改</el-button
               >
-              <!-- <el-button
+              <el-button
                 size="mini"
                 icon="el-icon-delete"
                 class="tableDeleteBtn"
                 @click="handleDelete(scope.row)"
                 >删除</el-button
-              > -->
+              >
             </template>
           </el-table-column>
         </template>
@@ -441,7 +381,7 @@ export default {
         },
       },
       isFold: true,
-      loading: true,
+      loading: false,
       // 表格
       tableDataSelectOptions: [],
       tableData: [],
@@ -449,7 +389,6 @@ export default {
         {
           label: '设备名称',
           prop: 'name',
-          align: 'left',
           sortable: 'custom',
         },
         {
@@ -468,11 +407,6 @@ export default {
           prop: 'type',
           sortable: 'custom',
         },
-        {
-          label: '额定功率(kW)',
-          prop: 'ratedPower',
-          sortable: 'custom',
-        },
 
         {
           label: '档案状态',
@@ -480,7 +414,7 @@ export default {
           sortable: 'custom',
         },
         {
-          label: '量测模型',
+          label: '额定功率(kW)',
           prop: 'equipMeasTmplId',
           sortable: 'custom',
         },
@@ -610,24 +544,189 @@ export default {
     },
     // 请求表格数据
     getList() {
-      if (this.$route.query.equipNo) {
-        this.queryParams.equipNo = this.$route.query.equipNo;
-      }
-      if (this.dateRange) {
-        this.queryParams.createStartDate = this.dateRange[0];
-        this.queryParams.createEndDate = this.dateRange[1];
-      }
-      this.loading = true;
-      HttpUrl.equipList(this.queryParams).then(res => {
-        this.tableData = res.data.data ?? [];
-        this.$nextTick(() => {
-          this.queryParams.total = res.data.total;
-        });
-        this.loading = false;
-        if (this.tableData.length == 0 && this.queryParams.pageNum > 1) {
-          this.queryParams.pageNum = this.queryParams.pageNum - 1;
-          this.getList();
-        }
+      // if (this.$route.query.equipNo) {
+      //   this.queryParams.equipNo = this.$route.query.equipNo;
+      // }
+      // if (this.dateRange) {
+      //   this.queryParams.createStartDate = this.dateRange[0];
+      //   this.queryParams.createEndDate = this.dateRange[1];
+      // }
+      // this.loading = true;
+      // HttpUrl.equipList(this.queryParams).then(res => {
+      //   this.tableData = res.data.data ?? [];
+      //   this.$nextTick(() => {
+      //     this.queryParams.total = res.data.total;
+      //   });
+      //   this.loading = false;
+      //   if (this.tableData.length == 0 && this.queryParams.pageNum > 1) {
+      //     this.queryParams.pageNum = this.queryParams.pageNum - 1;
+      //     this.getList();
+      //   }
+      // });
+      let res = {
+        message: '成功',
+        code: 200,
+        data: {
+          pageNum: 1,
+          pageSize: 10,
+          total: 5253,
+          data: [
+            {
+              id: 160000000009,
+              equipNo: '080100000712',
+              name: '设备1',
+              consName: '',
+              consNo: '3200155862993',
+              consId: '100000000198',
+              ratedPower: '7200.0',
+              type: '其他设备',
+              typeKey: null,
+              equipMeasTmplId: '通用功率模板',
+              equipMeasTmplIdKey: '1006',
+              createDate: '2023-11-29',
+              status: '已入库',
+            },
+            {
+              id: 160000000010,
+              equipNo: '080100000704',
+              name: '设备2',
+              consName: '',
+              consNo: '3200155862993',
+              consId: '100000000198',
+              ratedPower: '7200.0',
+              type: '其他设备',
+              typeKey: null,
+              equipMeasTmplId: '通用功率模板',
+              equipMeasTmplIdKey: '1006',
+              createDate: '2023-11-03',
+              status: '已入库',
+            },
+            {
+              id: 160000000011,
+              equipNo: '080100000705',
+              name: '设备3',
+              consName: '',
+              consNo: '3200155862993',
+              consId: '100000000198',
+              ratedPower: '7200.0',
+              type: '其他设备',
+              typeKey: null,
+              equipMeasTmplId: '通用功率模板',
+              equipMeasTmplIdKey: '1006',
+              createDate: '2023-11-03',
+              status: '已入库',
+            },
+            {
+              id: 160000000012,
+              equipNo: '080100000711',
+              name: '设备4',
+              consName: '',
+              consNo: '3200155862993',
+              consId: '100000000198',
+              ratedPower: '7200.0',
+              type: '其他设备',
+              typeKey: null,
+              equipMeasTmplId: '通用功率模板',
+              equipMeasTmplIdKey: '1006',
+              createDate: '2023-10-18',
+              status: '已入库',
+            },
+            {
+              id: 160000000013,
+              equipNo: '080100001321',
+              name: '设备5',
+              consName: '',
+              consNo: '3200157122930',
+              consId: '100000000106',
+              ratedPower: '2500.0',
+              type: '储能设备',
+              typeKey: null,
+              equipMeasTmplId: '通用功率模板',
+              equipMeasTmplIdKey: '1006',
+              createDate: '2023-10-18',
+              status: '已入库',
+            },
+            {
+              id: 160000000014,
+              equipNo: '080100000466',
+              name: '设备6',
+              consName: '',
+              consNo: '3200157059676',
+              consId: '100000000110',
+              ratedPower: '6300.0',
+              type: '其他设备',
+              typeKey: null,
+              equipMeasTmplId: '通用功率模板',
+              equipMeasTmplIdKey: '1006',
+              createDate: '2023-10-18',
+              status: '已入库',
+            },
+            {
+              id: 160000000015,
+              equipNo: '080100001443',
+              name: '设备7',
+              consName: '',
+              consNo: '3203002128205',
+              consId: '100000000109',
+              ratedPower: '2000.0',
+              type: '储能设备',
+              typeKey: null,
+              equipMeasTmplId: '通用功率模板',
+              equipMeasTmplIdKey: '1006',
+              createDate: '2023-12-13',
+              status: '已入库',
+            },
+            {
+              id: 160000000016,
+              equipNo: '080100000709',
+              name: '设备8',
+              consName: '',
+              consNo: '3200155862993',
+              consId: '100000000198',
+              ratedPower: '7200.0',
+              type: '其他设备',
+              typeKey: null,
+              equipMeasTmplId: '通用功率模板',
+              equipMeasTmplIdKey: '1006',
+              createDate: '2023-10-18',
+              status: '已入库',
+            },
+            {
+              id: 160000000017,
+              equipNo: '080100000707',
+              name: '设备9',
+              consName: '',
+              consNo: '3200155862993',
+              consId: '100000000198',
+              ratedPower: '7200.0',
+              type: '其他设备',
+              typeKey: null,
+              equipMeasTmplId: '通用功率模板',
+              equipMeasTmplIdKey: '1006',
+              createDate: '2023-10-18',
+              status: '已入库',
+            },
+            {
+              id: 160000000018,
+              equipNo: '080100001059',
+              name: '设备10',
+              consName: '',
+              consNo: '3200156983437',
+              consId: '100000000108',
+              ratedPower: '7200.0',
+              type: '其他设备',
+              typeKey: null,
+              equipMeasTmplId: '通用功率模板',
+              equipMeasTmplIdKey: '1006',
+              createDate: '2023-09-19',
+              status: '已入库',
+            },
+          ],
+        },
+      };
+      this.tableData = res.data.data ?? [];
+      this.$nextTick(() => {
+        this.queryParams.total = res.data.total;
       });
     },
     // 表格查询
@@ -770,7 +869,7 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep .query-container .el-form-item {
-  width: 21%;
+  width: 17%;
 }
 
 ::v-deep .query-container .el-form-item__content {

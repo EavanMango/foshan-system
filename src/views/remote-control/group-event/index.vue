@@ -3,8 +3,8 @@
  * @Author       : 陈凯
  * @Date         : 2023-09-07 15:10:13
  * @LastEditors  : 陈凯
- * @LastEditTime : 2023-12-08 17:41:42
- * @FilePath     : \init-project\src\views\remote-control\group-event\index.vue
+ * @LastEditTime : 2024-02-28 09:06:09
+ * @FilePath     : \foushan-system\src\views\remote-control\group-event\index.vue
 -->
 
 <template>
@@ -198,7 +198,7 @@ export default {
       },
       dateRange: [],
       isFold: true,
-      loading: true,
+      loading: false,
       tradeCateOptions: [],
       // 表格
       tableDataSelectOptions: [],
@@ -240,10 +240,6 @@ export default {
           label: '结束时间',
           prop: 'endTime',
         },
-        {
-          label: '状态',
-          prop: 'state',
-        },
       ],
       queryParams: {
         pageNum: 1,
@@ -265,7 +261,7 @@ export default {
           sortable: 'custom',
         },
         {
-          label: '地市',
+          label: '地区',
           prop: 'city',
           sortable: 'custom',
         },
@@ -308,17 +304,192 @@ export default {
     },
     // 请求表格数据
     getList() {
-      if (this.dateRange) {
-        this.queryParams.startDate = this.dateRange[0];
-        this.queryParams.endDate = this.dateRange[1];
-      }
-      this.loading = true;
-      HttpUrl.getCtrlEvents(this.queryParams).then(res => {
-        this.tableData = res.data.data;
-        this.$nextTick(() => {
-          this.queryParams.total = res.data.total;
-        });
-        this.loading = false;
+      // if (this.dateRange) {
+      //   this.queryParams.startDate = this.dateRange[0];
+      //   this.queryParams.endDate = this.dateRange[1];
+      // }
+      // this.loading = true;
+      // HttpUrl.getCtrlEvents(this.queryParams).then(res => {
+      //   this.tableData = res.data.data;
+      //   this.$nextTick(() => {
+      //     this.queryParams.total = res.data.total;
+      //   });
+      //   this.loading = false;
+      // });
+      let res = {
+        message: '成功',
+        code: 200,
+        data: {
+          pageNum: 1,
+          pageSize: 10,
+          total: 138,
+          data: [
+            {
+              id: 82,
+              name: '事件1',
+              code: 'KUNSHAN_0715',
+              loadValue: '265.29',
+              startTime: '2023-07-15 10:00:00',
+              endTime: '2023-07-15 11:00:00',
+              takePartType: '邀约',
+              commandType: '削峰',
+              groupName: '群组1',
+              consNum: null,
+              underLoad: null,
+              respondLoad: null,
+              finishRate: null,
+              state: '已完成',
+            },
+            {
+              id: 195,
+              name: '事件2',
+              code: '20240227150850',
+              loadValue: '40.00',
+              startTime: '2024-02-27 15:15:00',
+              endTime: '2024-02-27 16:00:00',
+              takePartType: '邀约',
+              commandType: '削峰',
+              groupName: '群组2',
+              consNum: null,
+              underLoad: null,
+              respondLoad: null,
+              finishRate: null,
+              state: '已下发待执行',
+            },
+            {
+              id: 194,
+              name: '事件3',
+              code: '20240227150305',
+              loadValue: '30.00',
+              startTime: '2024-02-27 15:05:00',
+              endTime: '2024-02-27 16:00:00',
+              takePartType: '邀约',
+              commandType: '削峰',
+              groupName: '群组3',
+              consNum: null,
+              underLoad: null,
+              respondLoad: null,
+              finishRate: null,
+              state: '已下发待执行',
+            },
+            {
+              id: 193,
+              name: '事件4',
+              code: '20240227143238',
+              loadValue: '20.00',
+              startTime: '2024-02-27 14:34:00',
+              endTime: '2024-02-27 15:00:00',
+              takePartType: '邀约',
+              commandType: '削峰',
+              groupName: '群组4',
+              consNum: null,
+              underLoad: null,
+              respondLoad: null,
+              finishRate: null,
+              state: '已下发待执行',
+            },
+            {
+              id: 192,
+              name: '事件5',
+              code: '20240227090818',
+              loadValue: '40.00',
+              startTime: '2024-02-27 09:11:00',
+              endTime: '2024-02-27 10:00:00',
+              takePartType: '邀约',
+              commandType: '削峰',
+              groupName: '群组5',
+              consNum: null,
+              underLoad: null,
+              respondLoad: null,
+              finishRate: null,
+              state: '已下发待执行',
+            },
+            {
+              id: 191,
+              name: '事件6',
+              code: '20240226152157',
+              loadValue: '20.00',
+              startTime: '2024-02-26 15:44:00',
+              endTime: '2024-02-26 17:00:00',
+              takePartType: '邀约',
+              commandType: '削峰',
+              groupName: '群组6',
+              consNum: null,
+              underLoad: null,
+              respondLoad: null,
+              finishRate: null,
+              state: '已下发待执行',
+            },
+            {
+              id: 190,
+              name: '事件7',
+              code: '20240226152157',
+              loadValue: '20.00',
+              startTime: '2024-02-26 15:25:00',
+              endTime: '2024-02-26 17:00:00',
+              takePartType: '邀约',
+              commandType: '削峰',
+              groupName: '群组7',
+              consNum: null,
+              underLoad: null,
+              respondLoad: null,
+              finishRate: null,
+              state: '已下发待执行',
+            },
+            {
+              id: 189,
+              name: '事件8',
+              code: '20240226150645',
+              loadValue: '20.00',
+              startTime: '2024-02-26 15:09:00',
+              endTime: '2024-02-26 16:00:00',
+              takePartType: '邀约',
+              commandType: '削峰',
+              groupName: '群组8',
+              consNum: null,
+              underLoad: null,
+              respondLoad: null,
+              finishRate: null,
+              state: '已下发待执行',
+            },
+            {
+              id: 188,
+              name: '事件9',
+              code: '20240226141256',
+              loadValue: '50.00',
+              startTime: '2024-02-26 14:15:00',
+              endTime: '2024-02-26 15:00:00',
+              takePartType: '邀约',
+              commandType: '削峰',
+              groupName: '群组9',
+              consNum: null,
+              underLoad: null,
+              respondLoad: null,
+              finishRate: null,
+              state: '已下发待执行',
+            },
+            {
+              id: 187,
+              name: '事件10',
+              code: '20240226141026',
+              loadValue: '10.00',
+              startTime: '2024-02-26 14:13:00',
+              endTime: '2024-02-26 14:33:00',
+              takePartType: '邀约',
+              commandType: '削峰',
+              groupName: '群组10',
+              consNum: null,
+              underLoad: null,
+              respondLoad: null,
+              finishRate: null,
+              state: '已下发待执行',
+            },
+          ],
+        },
+      };
+      this.tableData = res.data.data;
+      this.$nextTick(() => {
+        this.queryParams.total = res.data.total;
       });
     },
     // 刷新

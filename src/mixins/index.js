@@ -30,7 +30,7 @@ let mixin = {
             }
             this.getList()
         },
-        // 获取地市
+        // 获取地区
         getCityList(key) {
             HttpUrl.getAreaListByParentId({ param: key ? key : 320000 }).then(res => {
                 this.cityList = res.data

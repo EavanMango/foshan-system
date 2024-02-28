@@ -51,7 +51,7 @@
             @keyup.enter.native="getList"
           />
         </el-form-item>
-        <el-form-item class="smallcontainer" label-width="3.6rem" label="地市">
+        <el-form-item class="smallcontainer" label-width="3.6rem" label="地区">
           <el-select
             style="width: 100%"
             v-model="queryParams.city"
@@ -166,7 +166,7 @@
             @keyup.enter.native="getList"
           />
         </el-form-item>
-        <el-form-item class="smallcontainer" label-width="3.6rem" label="地市">
+        <el-form-item class="smallcontainer" label-width="3.6rem" label="地区">
           <el-select
             style="width: 100%"
             v-model="queryParamsDialog.city"
@@ -258,7 +258,7 @@ export default {
           sortable: 'custom',
         },
         {
-          label: '地市',
+          label: '地区',
           prop: 'city',
           sortable: 'custom',
         },

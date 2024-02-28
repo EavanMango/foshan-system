@@ -7,7 +7,7 @@ const state = {
     withoutAnimation: false
   },
   lang: Cookies.get('lang') || 'zh',
-  theme: Cookies.get('theme') || 'theme-boldDark',
+  theme: Cookies.get('theme') || 'theme-blue',
 }
 
 const mutations = {

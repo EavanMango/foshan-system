@@ -3,7 +3,7 @@
  * @Author       : 陈凯
  * @Date         : 2024-02-21 16:38:48
  * @LastEditors  : 陈凯
- * @LastEditTime : 2024-02-23 11:04:59
+ * @LastEditTime : 2024-02-27 15:48:55
  * @FilePath     : \foushan-system\src\views\index-screen\components\left\index.vue
 -->
 <template>
@@ -196,7 +196,7 @@ export default {
         ],
         tooltip: {
           trigger: 'axis',
-          color: this.fontColor,
+          color: '#fff',
           backgroundColor: 'rgba(0,0,0,0.4)',
           borderColor: 'gray',
           textStyle: {
@@ -236,7 +236,7 @@ export default {
           itemWidth: this.echartFontSize(16), //修改icon图形大小
           itemGap: this.echartFontSize(10),
           textStyle: {
-            color: this.fontColor,
+            color: '#fff',
             fontSize: this.echartFontSize(12),
           },
 
@@ -249,17 +249,17 @@ export default {
             show: true,
             lineStyle: {
               opacity: 0.2,
-              color: this.fontColor,
+              color: '#fff',
             },
           },
           axisLabel: {
             interval: 15,
-            color: this.fontColor,
+            color: '#fff',
             fontSize: this.echartFontSize(12),
             margin: this.echartFontSize(15),
           },
           nameTextStyle: {
-            color: this.fontColor,
+            color: '#fff',
             fontSize: this.echartFontSize(12),
           },
         },
@@ -270,16 +270,16 @@ export default {
             show: true,
             lineStyle: {
               opacity: 0.2,
-              color: this.fontColor,
+              color: '#fff',
             },
           },
           axisLabel: {
             formatter: '{value}',
-            color: this.fontColor,
+            color: '#fff',
             fontSize: this.echartFontSize(12),
           },
           nameTextStyle: {
-            color: this.fontColor,
+            color: '#fff',
             fontSize: this.echartFontSize(12),
           },
         },

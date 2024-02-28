@@ -1,5 +1,80 @@
 import { DateUtil } from '@/utils/date-util';
-export const treeData = [];
+export const treeData = [
+  {
+    id: '320100',
+    parentId: '320000',
+    name: '顺德区',
+    equipType: null,
+    type: '1',
+    label: null,
+    children: [
+      {
+        id: '100000001308',
+        parentId: '320100',
+        name: '用户1',
+        equipType: null,
+        type: '3',
+        label: null,
+        children: [],
+      },
+      {
+        id: '100000001345',
+        parentId: '320100',
+        name: '用户2',
+        equipType: null,
+        type: '3',
+        label: null,
+        children: [],
+      },
+      {
+        id: '100000001377',
+        parentId: '320100',
+        name: '用户3',
+        equipType: null,
+        type: '3',
+        label: null,
+        children: [],
+      },
+
+    ],
+  },
+  {
+    id: '320200',
+    parentId: '320000',
+    name: '禅城区',
+    equipType: null,
+    type: '1',
+    label: null,
+    children: [],
+  },
+  {
+    id: '320300',
+    parentId: '320000',
+    name: '南海区',
+    equipType: null,
+    type: '1',
+    label: null,
+    children: [],
+  },
+  {
+    id: '320400',
+    parentId: '320000',
+    name: '高明区',
+    equipType: null,
+    type: '1',
+    label: null,
+    children: [],
+  },
+  {
+    id: '320500',
+    parentId: '320000',
+    name: '三水区',
+    equipType: null,
+    type: '1',
+    label: null,
+  },
+
+];
 
 export function generateLineOptions(_that, { values, timeTag }, start, end) {
   let arrayData = []

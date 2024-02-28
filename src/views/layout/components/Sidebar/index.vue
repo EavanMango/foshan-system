@@ -57,6 +57,8 @@ export default {
         return '/ancillary-services/demand-calendar';
       } else if (path === '/remote-control/group-event-detail') {
         return '/remote-control/group-event';
+      } else if (path === '/load-monitor/user-monitor-detail') {
+        return '/load-monitor/user-monitor';
       } else {
         return path;
       }

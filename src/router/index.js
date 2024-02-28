@@ -123,7 +123,16 @@ export const asyncRoutes = [
           icon: '用户监测',
         },
       },
-
+      {
+        name: 'userMonitor',
+        path: 'user-monitor-detail',
+        hidden: true,
+        component: () => import('@/views/load-monitor/user-monitor/detail.vue'),
+        meta: {
+          title: '用户监测-设备数量详情',
+          icon: '用户监测',
+        },
+      },
       {
         name: 'HistoryMonitorEdit',
         path: 'history-monitor-deviceNum',

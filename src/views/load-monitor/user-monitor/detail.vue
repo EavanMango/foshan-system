@@ -1,10 +1,10 @@
 <!--
- * @Description  : 用户监测
+ * @Description  : 负荷监测-用户监测设备数量详情
  * @Author       : 陈凯
- * @Date         : 2024-02-21 10:08:29
+ * @Date         : 2024-02-28 15:40:19
  * @LastEditors  : 陈凯
- * @LastEditTime : 2024-02-28 16:03:47
- * @FilePath     : \foushan-system\src\views\load-monitor\user-monitor\index.vue
+ * @LastEditTime : 2024-02-28 16:04:05
+ * @FilePath     : \foushan-system\src\views\load-monitor\user-monitor\detail.vue
 -->
 <template>
   <div class="w-h-100" style="padding: 0.3rem">
@@ -15,7 +15,7 @@
             v-show="pageType === 'DEVICE'"
             class="flex padding-10 text-color text-title"
           >
-            <div class="flex-1">用户监测</div>
+            <div class="flex-1">设备监测</div>
             <div class="text-link" @click="handleReturn">返回上一级</div>
           </div>
           <div
@@ -23,7 +23,7 @@
             class="padding-10 text-color border-bottom text-title"
             style="border-bottom: 1px solid #ccc"
           >
-            <div>用户监测</div>
+            <div>设备监测</div>
             <el-select
               class="width100 margin-top-10"
               v-model.lazy="currentId"
@@ -86,27 +86,13 @@
             <div
               v-for="item in topCardData"
               :key="item.name"
-              style="width: 24%; height: 48%; margin-bottom: 0.7rem"
+              style="width: 24%; height: 99%"
               class="flex_row_a eightEach"
             >
               <img style="height: 70%" :src="item.img" />
-              <div
-                class="width50 flex_row_s"
-                :class="{ pointer: item.name == '设备数量' }"
-                @click="
-                  item.name == '设备数量' &&
-                    $router.push('/load-monitor/user-monitor-detail')
-                "
-              >
-                <div>
-                  <div>{{ item.name }}&nbsp;{{ item.unit }}</div>
-                  <div class="font-weight-bold">{{ item.value }}</div>
-                </div>
-
-                <i
-                  v-if="item.name == '设备数量'"
-                  class="el-icon-arrow-right font-weight-bold"
-                ></i>
+              <div class="width50">
+                <div>{{ item.name }}&nbsp;{{ item.unit }}</div>
+                <div class="font-weight-bold">{{ item.value }}</div>
               </div>
             </div>
           </section>
@@ -259,51 +245,28 @@ export default {
       topCardData: [
         {
           name: '实时负荷',
-          value: '2287.28',
+          value: '232.28',
           unit: '(kW)',
           img: require('../../../assets/load-monitor/实时负荷.png'),
         },
         {
           name: '今日最高负荷',
-          value: '2578.91',
+          value: '235.91',
           unit: '(kW)',
           img: require('../../../assets/load-monitor/最高负荷.png'),
         },
         {
           name: '今日最低负荷',
-          value: '2002.01',
+          value: '164.01',
           unit: '(kW)',
           img: require('../../../assets/load-monitor/最低负荷.png'),
         },
-        {
-          name: '设备数量',
-          value: '10',
-          unit: '(个)',
-          img: require('../../../assets/load-monitor/设备台数.png'),
-        },
-        {
-          name: '装机容量',
-          value: '2287.28',
-          unit: '(kW)',
-          img: require('../../../assets/load-monitor/装机容量.png'),
-        },
-        {
-          name: '安保负荷',
-          value: '2578',
-          unit: '(kW)',
-          img: require('../../../assets/load-monitor/安保负荷.png'),
-        },
+
         {
           name: '实时可调功率',
-          value: '2002.28',
+          value: '68.28',
           unit: '(kW)',
           img: require('../../../assets/load-monitor/实时可调功率.png'),
-        },
-        {
-          name: '数据来源',
-          value: '来源一',
-          unit: '(kW)',
-          img: require('../../../assets/load-monitor/数据来源.png'),
         },
       ],
     };
@@ -1285,12 +1248,12 @@ export default {
   cursor: pointer;
 }
 .cardBox {
-  height: 10rem;
+  height: 5rem;
   .eightEach {
     @include font_color('fontColor');
 
     border: 2px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
     border-radius: 1rem;
   }
 }

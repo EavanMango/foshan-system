@@ -52,9 +52,9 @@ export default {
       weatherList,
       cityWeatherList: [],
       currentWeather: {
-        city: '南京',
+        city: '佛山',
         weather_imgurl: weatherList[4].imgUrl,
-        weather_tem: '2',
+        weather_tem: '24',
         weather_name: '多云',
       },
     };

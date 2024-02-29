@@ -50,7 +50,7 @@ export default {
 
 .topTitle {
   text-decoration: none;
-  animation: topTitleShine 2s infinite; /*设置动画*/
+  // animation: topTitleShine 2s infinite; /*设置动画*/
 }
 @keyframes topTitleShine {
   /*创建动画*/

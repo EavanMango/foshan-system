@@ -3,7 +3,7 @@
  * @Author       : 陈凯
  * @Date         : 2023-09-07 15:10:13
  * @LastEditors  : 陈凯
- * @LastEditTime : 2024-02-28 10:47:46
+ * @LastEditTime : 2024-02-29 17:21:46
  * @FilePath     : \foushan-system\src\views\remote-control\group-issued\index.vue
 -->
 
@@ -288,22 +288,18 @@ export default {
       ],
       tableColumnsDraft: [
         {
-          label: '事件名称',
+          label: '户名',
           prop: 'name',
         },
 
         {
-          label: '需求功率',
-          prop: 'loadValue',
+          label: '设备名称',
+          prop: 'groupName',
         },
 
         {
-          label: '开始时间',
-          prop: 'startTime',
-        },
-        {
-          label: '结束时间',
-          prop: 'endTime',
+          label: '可调负荷',
+          prop: 'loadValue',
         },
       ],
       queryParams: {

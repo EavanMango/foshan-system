@@ -3,7 +3,7 @@
  * @Author       : 陈凯
  * @Date         : 2023-11-06 10:26:08
  * @LastEditors  : 陈凯
- * @LastEditTime : 2024-02-28 16:28:30
+ * @LastEditTime : 2024-02-29 17:24:44
  * @FilePath     : \foushan-system\src\views\remote-control\group-event\detail.vue
 -->
 <template>
@@ -402,7 +402,7 @@ export default {
               consId: '100000001244',
               consNo: '3206623223505',
               consName: '顺德高新科技服务有限公司',
-              city: '苏州',
+              city: '顺德',
               downLoad: 81.0,
               consState: '已完成',
             },
@@ -412,7 +412,7 @@ export default {
               consId: '100000001246',
               consNo: '3203005925233',
               consName: '顺德英汇物业服务有限公司',
-              city: '苏州',
+              city: '顺德',
               downLoad: 61.0,
               consState: '已完成',
             },
@@ -422,7 +422,7 @@ export default {
               consId: '100000001248',
               consNo: '3206618489456',
               consName: '顺德市柏雅酒店管理有限公司',
-              city: '苏州',
+              city: '顺德',
               downLoad: 116.06,
               consState: '已完成',
             },
@@ -431,8 +431,8 @@ export default {
               eventId: '82',
               consId: '100000001256',
               consNo: '3206883015591',
-              consName: '玉山供电所',
-              city: '苏州',
+              consName: '顺德供电所',
+              city: '顺德',
               downLoad: 7.23,
               consState: '已完成',
             },

@@ -18,7 +18,7 @@
         >
           <WeatherItem></WeatherItem>
         </el-tooltip>
-        <el-tooltip
+        <!-- <el-tooltip
           content="大屏"
           effect="dark"
           placement="bottom"
@@ -29,7 +29,7 @@
             style="color: #fff; font-size: 1.3rem"
             @click="jumpScreen"
           ></i>
-        </el-tooltip>
+        </el-tooltip> -->
         <!-- <el-tooltip
           content="告警"
           effect="dark"
@@ -55,7 +55,7 @@
             </div>
           </el-badge>
         </el-tooltip> -->
-        <el-tooltip content="上级指令" effect="dark" placement="bottom">
+        <!-- <el-tooltip content="上级指令" effect="dark" placement="bottom">
           <div
             class="nav-btn-error"
             @click="$router.push('/superior-instruction/control-event')"
@@ -75,7 +75,7 @@
               ></path>
             </svg>
           </div>
-        </el-tooltip>
+        </el-tooltip> -->
         <el-tooltip
           :content="this.$t('header.menuSearch')"
           effect="dark"
@@ -113,6 +113,7 @@
         </el-tooltip> -->
 
         <el-tooltip
+          v-show="false"
           :content="this.$t('header.themeChange')"
           effect="dark"
           placement="bottom"
